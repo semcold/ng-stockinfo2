@@ -1,0 +1,77 @@
+<mat-form-field>
+  <mat-label>Filter</mat-label>
+  <input matInput (keyup)="applyFilter($event)" placeholder="Apple" #input>
+</mat-form-field>
+
+<div
+  class="example-loading-shade"
+  *ngIf="isLoadingResults || isRateLimitReached">
+  <mat-spinner *ngIf="isLoadingResults" [diameter]='35'></mat-spinner>
+  <div class="example-rate-limit-reached" *ngIf="isRateLimitReached">
+    rate limit has been reached. It will be reset in one minute.
+  </div>
+</div>
+
+<table mat-table
+       [dataSource]="stockSymbol" multiTemplateDataRows
+       class="mat-elevation-z8"
+       matSort
+       >
+  <ng-container matColumnDef="{{stock}}" *ngFor="let stock of stockToDisplay">
+    <th mat-header-cell *matHeaderCellDef> {{stock}} </th>
+    <td mat-cell *matCellDef="let element" (click)="onClickRow(element.symbol)"> {{element[stock]}} </td>
+  </ng-container>
+
+  <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+  <ng-container matColumnDef="expandedDetail">
+    <td mat-cell *matCellDef="let element" [attr.colspan]="stockToDisplay.length">
+      <div class="example-element-detail"
+           [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+        <div class="example-element-diagram">
+          <img src={{profiles?.logo}} alt="">
+        </div>
+        <div class="example-element-description">
+          {{element.description}}
+          <div class="profile-detail">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Country</th>
+                  <th>Name Company</th>
+                  <th>Date of IPO</th>
+                  <th>Market Cap</th>
+                </tr>
+              </thead>
+              <tbody>
+
+                <tr>
+                  <td>{{profiles?.country}}</td>
+                  <td>{{profiles?.name}}</td>
+                  <td>{{profiles?.ipo | date: 'dd.MM.yyyy'}}</td>
+                  <td>{{profiles?.marketCapitalization | currency}}</td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="empty">
+              <mat-spinner *ngIf="isLoadingCompany" [diameter]='25'></mat-spinner>
+              <span *ngIf="empty">Нет данных</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="stockToDisplay"></tr>
+  <tr mat-row *matRowDef="let element; columns: stockToDisplay;"
+      class="example-element-row"
+      [class.example-expanded-row]="expandedElement === element"
+      (click)="expandedElement = expandedElement === element ? null : element">
+  </tr>
+  <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+</table>
+<mat-paginator [length]="resultsLength" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+
+<!-- <div *ngIf="isLoadingResults" class="spinner">
+  <div class="mouse-spinner"></div>
+</div> -->

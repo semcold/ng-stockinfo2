@@ -1,0 +1,126 @@
+table {
+  width: 100%;
+}
+
+tr.example-detail-row {
+  height: 0;
+}
+
+tr.example-element-row:not(.example-expanded-row):hover {
+  background: whitesmoke;
+
+}
+
+tr.example-element-row:not(.example-expanded-row):active {
+  background: #efefef;
+}
+
+.example-element-row td {
+  border-bottom-width: 0;
+  cursor: pointer;
+}
+
+.example-element-detail {
+  overflow: hidden;
+  display: flex;
+}
+
+.example-element-diagram {
+  width: 80px;
+  // border: 2px solid black;
+  // padding: 8px;
+  font-weight: lighter;
+  margin: 8px 0;
+  height: 104px;
+}
+
+.example-element-symbol {
+  font-weight: bold;
+  font-size: 40px;
+  line-height: normal;
+}
+
+.example-element-description {
+  padding: 16px;
+}
+
+.example-element-description-attribution {
+  opacity: 0.5;
+}
+
+.empty {
+  margin-left: 50%;
+}
+
+
+.example-loading-shade {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  padding-left: 25vw;
+  padding-top: 10vh;
+  background: rgba(0, 0, 0, 0.15);
+  z-index: 1;
+  display: flex;
+  // align-items: center;
+  // justify-content: center;
+}
+
+.example-rate-limit-reached {
+  color: #980000;
+  max-width: 160px;
+  text-align: center;
+}
+
+.example-element-diagram img {
+  width: 80px;
+}
+
+
+.spinner {
+  position: absolute;
+	width: 50%;
+  height: 100%;
+  z-index: 1;
+  cursor: progress;
+  background: rgba(0, 0, 0, 0.15);
+
+  .mouse-spinner {
+    z-index: 2;
+		position: absolute;
+		left: 50%;
+		top: 60%;
+		height:30px;
+		width:30px;
+		margin:0px auto;
+		-webkit-animation: rotation .6s infinite linear;
+		-moz-animation: rotation .6s infinite linear;
+		-o-animation: rotation .6s infinite linear;
+		animation: rotation .6s infinite linear;
+		border-left:3px solid rgba(0,174,239,.15);
+		border-right:3px solid rgba(0,174,239,.15);
+		border-bottom:3px solid rgba(0,174,239,.15);
+		border-top:3px solid rgba(0,174,239,.8);
+		border-radius:100%;
+		cursor: progress;
+
+
+
+	@-webkit-keyframes rotation {
+			from {-webkit-transform: rotate(0deg);}
+			to {-webkit-transform: rotate(359deg);}
+	}
+	@-moz-keyframes rotation {
+			from {-moz-transform: rotate(0deg);}
+			to {-moz-transform: rotate(359deg);}
+	}
+	@-o-keyframes rotation {
+			from {-o-transform: rotate(0deg);}
+			to {-o-transform: rotate(359deg);}
+	}
+	@keyframes rotation {
+			from {transform: rotate(0deg);}
+			to {transform: rotate(359deg);}
+	}
+}
+}

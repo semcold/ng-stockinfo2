@@ -1,0 +1,32 @@
+.data	{
+	// margin: 10vh 10vw;
+	padding: 15px;
+	display: flex;
+	width: 100vw;
+	height: 100vh;
+	background: linear-gradient(90deg, #41b2b2 0%, #69e2e6 100%);
+}
+.info {
+	justify-content: center;
+	flex-grow: 1;
+	width: 40%;
+	margin-right: 10px;
+	.candlestick {
+		height: 70%;
+		background: linear-gradient(90deg, #41b2b2 0%, #69e2e6 100%);
+	}
+
+	.websocket {
+		margin: 15px 0;
+		height: 27%;
+		background: linear-gradient(90deg, #4176b2 0%, #6995e6 100%);
+	}
+}
+
+.data-grid {
+	justify-content: center;
+	flex-grow: 1;
+	width: 60vw;
+	height: 100%;
+	//background: linear-gradient(90deg, #5041b2 0%, #7969e6 100%);
+}
