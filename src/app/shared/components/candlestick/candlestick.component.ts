@@ -10,6 +10,7 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class CandlestickComponent implements OnInit {
 
+  visualRange: any = {};
   stockCandles: StockCandles[] = [];
   empty;
   resolutions: any[];
@@ -36,6 +37,16 @@ export class CandlestickComponent implements OnInit {
   ngOnInit(): void {
     this.dataService.dateFrom = Math.floor(this.from.getTime() / 1000);
     this.dataService.dateTo = Math.floor(this.to.getTime() / 1000);
+
+    const subject = new BehaviorSubject(this.stockCandles);
+    // subject.subscribe(x => console.log(x));
+    subject.next(this.dataService.candles);
+    this.stockCandles = subject.getValue();
+    // subject.subscribe(x => {
+      // for(var i=0; i < x.c.length; i++);
+      // console.log(x)
+    // });
+    subject.complete();
   }
 
   onValueChanged($event) {

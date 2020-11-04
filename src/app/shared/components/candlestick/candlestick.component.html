@@ -23,13 +23,14 @@
 			lowValueField="l"
 			closeValueField="c">
 			<dxo-reduction color="red"></dxo-reduction>
+			<dxo-aggregation [enabled]="true"></dxo-aggregation>
 	</dxi-series>
 	<dxo-common-series-settings
 			argumentField="t"
 			type="candlestick">
 	</dxo-common-series-settings>
 	<dxo-legend itemTextPosition="left"></dxo-legend>
-	<dxi-value-axis>
+	<dxi-value-axis [tickInterval]="1">
 
 			<dxo-title text="US dollars"></dxo-title>
 			<dxo-label>
@@ -39,7 +40,7 @@
 					</dxo-format>
 			</dxo-label>
 	</dxi-value-axis>
-	<dxo-argument-axis [workdaysOnly]="false">
+	<dxo-argument-axis [workdaysOnly]="true" [visualRange]="visualRange" >
 			<dxo-label format="shortDate"></dxo-label>
 	</dxo-argument-axis>
 	<dxo-export [enabled]="true"></dxo-export>
@@ -50,6 +51,31 @@
 	</dxo-tooltip>
 
 </dx-chart>
+<dx-range-selector
+[dataSource]="stockCandles"
+[(value)]="visualRange">
+<dxo-size [height]="120"></dxo-size>
+<dxo-scale
+		minorTickInterval="day"
+		tickInterval="month"
+		valueType="datetime"
+		aggregationInterval="day"
+		[placeholderHeight]="20">
+</dxo-scale>
+<dxo-behavior
+		callValueChanged="onMoving"
+		[snapToTicks]="false">
+</dxo-behavior>
+<dxo-chart>
+		<dxo-value-axis valueType="numeric"></dxo-value-axis>
+		<dxi-series
+				type="line"
+				valueField="o"
+				argumentField="t">
+				<dxo-aggregation [enabled]="true"></dxo-aggregation>
+		</dxi-series>
+</dxo-chart>
+</dx-range-selector>
 <div class="under-charts">
 	<div class="date-time-fields">
 		<div class="dx-field">

@@ -1,0 +1,97 @@
+<form #f="ngForm" (ngSubmit)="onSubmit(f)">
+	<header class="auth-header">
+		<div id="select" class="form-group">
+			<h3 class="auth-title">
+				<div class="logo">
+					<span class="l l1"></span>
+					<span class="l l2"></span>
+					<span class="l l3"></span>
+					<span class="l l4"></span>
+					<span class="l l5"></span>
+				</div>
+				Пример Селекта
+			</h3>
+			<select
+				id="select"
+				class="form-control"
+				[(ngModel)]="currentSelectId"
+				(change)="onSelectChange()"
+				[ngModelOptions]="{standalone: true}"
+				>
+				<option
+					*ngFor="let s of stockSymbol"
+					[value]="s.symbol"
+					>
+					{{ s.symbol }}
+				</option>
+			</select>
+		</div>
+	</header>
+
+	<div class="auth-content">
+		<div
+				class="form-group"
+				[ngClass]="{'has-error': name.invalid && name.touched}"
+		>
+			<label class="control-label" for="e-category-name">Наименование компании</label>
+			<input
+				type="text"
+				id="e-category-name"
+				class="form-control"
+				required
+				#name="ngModel"
+				name="name"
+				[ngModel]="currentSymbol.description"
+			>
+			<span
+				*ngIf="name.invalid && name.touched"
+				class="form-help-text"
+			>Название категории не может быть пустым.</span>
+		</div>
+		<div
+			class="form-group"
+			[ngClass]="{'has-error': currency.invalid && currency.touched}"
+		>
+			<label class="control-label" for="e-category-currency">Валюта</label>
+			<input
+				type="text"
+				id="e-category-currency"
+				class="form-control"
+				[ngModel]="currentSymbol.currency"
+				name="currency"
+				#currency="ngModel"
+				required
+				min="1"
+			>
+			<span
+				*ngIf="currency.invalid && currency.touched"
+				class="form-help-text"
+			>
+				Поле не может быть пустым
+			</span>
+		</div>
+		<div
+			class="form-group"
+			[ngClass]="{'has-error': type.invalid && type.touched}"
+		>
+			<label class="control-label" for="e-category-type">Тип акций</label>
+			<input
+				type="text"
+				id="e-category-type"
+				class="form-control"
+				[ngModel]="currentSymbol.type"
+				name="type"
+				#type="ngModel"
+				required
+				min="1"
+			>
+			<span
+				*ngIf="type.invalid && type.touched"
+				class="form-help-text"
+			>
+				Поле не может быть пустым
+			</span>
+		</div>
+		<app-formresult></app-formresult>
+	</div>
+</form>

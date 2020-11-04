@@ -1,7 +1,20 @@
-<mat-form-field>
-  <mat-label>Filter</mat-label>
-  <input matInput (keyup)="applyFilter($event)" placeholder="Apple" #input>
-</mat-form-field>
+<div class="navigate">
+  <div class="filter-field">
+    <mat-form-field>
+      <mat-label>Filter</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Apple" #input>
+    </mat-form-field>
+  </div>
+  <div class="btn-field">
+    <a [routerLink]="['/stock-info', 'selectdropdown']"><button class="btn btn-primary">Select Dropdown</button></a>
+
+  </div>
+
+
+
+</div>
+
+
 
 <div
   class="example-loading-shade"

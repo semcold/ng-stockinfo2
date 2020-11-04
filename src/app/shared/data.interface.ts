@@ -4,6 +4,7 @@ export interface StockSymbol {
   symbol: string;
   type: string;
   currency: string;
+  id?: number;
 }
 
 export interface CompanyProfile {
@@ -32,7 +33,7 @@ export interface StockCandles {
   l: number;
   o: number;
   s: string;
-  t: Date;
+  t: number;
   v: number;
 }
 

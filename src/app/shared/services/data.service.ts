@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import {webSocket, WebSocketSubject} from 'rxjs/webSocket';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +24,16 @@ export class DataService {
   myWebSocket: WebSocketSubject<WebSocketList> = webSocket(`${environment.ws}${environment.token}`);
 
   getStockSymbol(): Observable<any> {
-    return this.http.get(`${environment.APIURL}/${environment.stock}/symbol?exchange=US&token=${environment.token}`);
+    return this.http.get(`${environment.APIURL}/${environment.stock}/symbol?exchange=US&token=${environment.token}`)
+    .pipe(map((response: {[key: string]: any}) => {
+      return Object
+        .keys(response)
+        .map(key => ({
+          ...response[key],
+          id: key,
+          date: new Date(response[key].date)
+        }));
+    }));
   }
 
   getBySymbol(): Observable<any> {

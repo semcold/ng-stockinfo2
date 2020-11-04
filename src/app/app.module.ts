@@ -54,6 +54,11 @@ import { DataGridComponent } from './shared/components/data-grid/data-grid.compo
 import { CandlestickComponent } from './shared/components/candlestick/candlestick.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DevExtremeModule, DxValidatorModule, DxVectorMapModule } from 'devextreme-angular';
+import { SelectdropdownComponent } from './shared/components/selectdropdown/selectdropdown.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SelectComponent } from './shared/components/selectdropdown/select/select.component';
+import { FormresultComponent } from './shared/components/selectdropdown/formresult/formresult.component';
+import { TableresultComponent } from './shared/components/selectdropdown/formresult/tableresult/tableresult.component';
 
 @NgModule({
   declarations: [
@@ -61,12 +66,18 @@ import { DevExtremeModule, DxValidatorModule, DxVectorMapModule } from 'devextre
     StockInfoComponent,
     WebsocketComponent,
     DataGridComponent,
-    CandlestickComponent
+    CandlestickComponent,
+    SelectdropdownComponent,
+    SelectComponent,
+    FormresultComponent,
+    TableresultComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
     A11yModule,
     ClipboardModule,
     CdkStepperModule,
